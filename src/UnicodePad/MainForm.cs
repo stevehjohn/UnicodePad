@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace UnicodePad
@@ -132,6 +133,33 @@ namespace UnicodePad
             ConfigurationManager.RefreshSection("appSettings");
 
             PopulateButtons();
+        }
+
+        public void ButtonMouseEnter(object sender, EventArgs e)
+        {
+            var button = (Button) sender;
+            buttonDelete.Top = buttonPanel.Top + button.Top;
+            buttonDelete.Left = button.Left + button.Width - buttonDelete.Width;
+            buttonDelete.Visible = true;
+            buttonDelete.Tag = button.Text;
+        }
+
+        public void ButtonMouseLeave(object sender, EventArgs e)
+        {
+            buttonDelete.Visible = false;
+        }
+
+        private void DeleteButtonClick(object sender, EventArgs e)
+        {
+            var characters = ConfigurationManager.AppSettings["characters"].Split(',');
+
+            var button = (Button) sender;
+            characters = characters.Where(c => c != (string) button.Tag).ToArray();
+
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["characters"].Value = string.Join(",", characters);
+            config.Save();
+            ConfigurationManager.RefreshSection("appSettings");
         }
     }
 }
