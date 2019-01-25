@@ -1,0 +1,26 @@
+*.user
+*.suo
+*_ReSharper*
+*_NCrunch*
+*.orig
+*.cache
+*.sublime-workspace
+*.ncrunchsolution
+
+bin
+obj
+out
+.vs
+.idea
+
+# Do not include actual packages as they will be extracted either on dev or on build system.
+packages/
+node_modules/
+
+# Do not include these specific configuration files as they will be generated
+#src/*/[W|w]eb.config
+#src/*/[N|n]log.config
+#src/*/[C|c]onnectionstrings.config
+
+.paket/paket.exe
+!.nuget/nuget.exe

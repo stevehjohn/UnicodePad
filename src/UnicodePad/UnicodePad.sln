@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnicodePad", "UnicodePad.csproj", "{7BFF4B4E-2C30-48B0-BD5A-CA4D605C48BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BFF4B4E-2C30-48B0-BD5A-CA4D605C48BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BFF4B4E-2C30-48B0-BD5A-CA4D605C48BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BFF4B4E-2C30-48B0-BD5A-CA4D605C48BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BFF4B4E-2C30-48B0-BD5A-CA4D605C48BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB43AC60-EFD5-4FE3-9D4D-D5A1C2408035}
+	EndGlobalSection
+EndGlobal
