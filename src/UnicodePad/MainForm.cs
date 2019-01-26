@@ -39,15 +39,17 @@ namespace UnicodePad
 
         private void MainFormMouseMove(object sender, EventArgs e)
         {
-            if (_dragging)
+            if (!_dragging)
             {
-                var position = Cursor.Position;
-
-                Top += position.Y - _position.Y;
-                Left += position.X - _position.X;
-
-                _position = position;
+                return;
             }
+
+            var position = Cursor.Position;
+
+            Top += position.Y - _position.Y;
+            Left += position.X - _position.X;
+
+            _position = position;
         }
 
         private void ResizeButtonMouseUp(object sender, EventArgs e)
@@ -77,23 +79,13 @@ namespace UnicodePad
                 var newHeight = Height + position.Y - _position.Y;
                 var newWidth = Width + position.X - _position.X;
 
-                if (newWidth < 100)
-                {
-                    Width = 100;
-                }
-                else
-                {
-                    Width = newWidth;
-                }
+                Width = newWidth < 100 
+                    ? 100 
+                    : newWidth;
 
-                if (newHeight < 200)
-                {
-                    Height = 200;
-                }
-                else
-                {
-                    Height = newHeight;
-                }
+                Height = newHeight < 200 
+                    ? 200 
+                    : newHeight;
 
                 _position = position;
             }
@@ -159,14 +151,9 @@ namespace UnicodePad
         {
             var data = (string) e.Data.GetData(DataFormats.StringFormat);
 
-            if (!string.IsNullOrWhiteSpace(data))
-            {
-                e.Effect = DragDropEffects.Move;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
+            e.Effect = !string.IsNullOrWhiteSpace(data) 
+                ? DragDropEffects.Move 
+                : DragDropEffects.None;
         }
     }
 }
