@@ -169,6 +169,8 @@ namespace UnicodePad
 
             buttonDelete.DragDrop += ButtonDeleteOnDragDrop;
             buttonDelete.DragOver += ButtonDeleteOnDragOver;
+
+            TopMost = true;
         }
 
         private void PopulateButtons()
