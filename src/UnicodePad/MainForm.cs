@@ -24,7 +24,7 @@ namespace UnicodePad
         private void ButtonMouseDown(object sender, EventArgs e)
         {
             var button = (Button)sender;
-            var dataObject = new DataObject(DataFormats.StringFormat);
+            var dataObject = new DataObject(DataFormats.UnicodeText);
             dataObject.SetText(button.Text);
             Clipboard.SetDataObject(dataObject);
             DoDragDrop(dataObject, DragDropEffects.All);
@@ -135,31 +135,38 @@ namespace UnicodePad
             PopulateButtons();
         }
 
-        public void ButtonMouseEnter(object sender, EventArgs e)
-        {
-            var button = (Button) sender;
-            buttonDelete.Top = buttonPanel.Top + button.Top;
-            buttonDelete.Left = button.Left + button.Width - buttonDelete.Width;
-            buttonDelete.Visible = true;
-            buttonDelete.Tag = button.Text;
-        }
-
-        public void ButtonMouseLeave(object sender, EventArgs e)
-        {
-            buttonDelete.Visible = false;
-        }
-
-        private void DeleteButtonClick(object sender, EventArgs e)
+        private void ButtonDeleteOnDragDrop(object sender, DragEventArgs e)
         {
             var characters = ConfigurationManager.AppSettings["characters"].Split(',');
 
-            var button = (Button) sender;
-            characters = characters.Where(c => c != (string) button.Tag).ToArray();
+            var data = (string) e.Data.GetData(DataFormats.UnicodeText);
+            if (string.IsNullOrWhiteSpace(data))
+            {
+                return;
+            }
+
+            characters = characters.Where(c => c != data).ToArray();
 
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.AppSettings.Settings["characters"].Value = string.Join(",", characters);
             config.Save();
             ConfigurationManager.RefreshSection("appSettings");
+
+            PopulateButtons();
+        }
+
+        private void ButtonDeleteOnDragOver(object sender, DragEventArgs e)
+        {
+            var data = (string) e.Data.GetData(DataFormats.StringFormat);
+
+            if (!string.IsNullOrWhiteSpace(data))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
         }
     }
 }
