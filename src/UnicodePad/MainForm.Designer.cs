@@ -158,6 +158,8 @@ namespace UnicodePad
         {
             base.OnLoad(e);
 
+            InitialiseColours();
+
             MouseDown += MainFormMouseDown;
             MouseUp += MainFormMouseUp;
             MouseMove += MainFormMouseMove;
@@ -201,14 +203,14 @@ namespace UnicodePad
                     Text = symbol,
                     TabStop = false,
                     FlatStyle = FlatStyle.Flat,
-                    BackColor = Color.FromArgb(30, 30, 30),
-                    ForeColor = Color.White,
+                    BackColor = GetColor("ButtonBackColor", Color.FromArgb(255, 30, 30, 30)),
+                    ForeColor = GetColor("ButtonForeColor", Color.FromArgb(255, 255, 255, 255)),
                     Width = 60,
                     Height = 60
                 };
                 button.FlatAppearance.BorderSize = 0;
-                button.FlatAppearance.MouseOverBackColor = Color.FromArgb(60, 60, 60);
-                button.FlatAppearance.MouseDownBackColor = Color.FromArgb(80, 80, 80);
+                button.FlatAppearance.MouseOverBackColor = GetColor("ButtonHoverColor", Color.FromArgb(255, 60, 60, 60));
+                button.FlatAppearance.MouseDownBackColor = GetColor("ButtonClickColor", Color.FromArgb(255, 80, 80, 80));
                 button.MouseDown += ButtonMouseDown;
                 button.Font = new Font("Consolas", 16);
                 buttonPanel.Controls.Add(button);

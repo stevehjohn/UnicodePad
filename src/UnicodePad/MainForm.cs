@@ -155,5 +155,54 @@ namespace UnicodePad
                 ? DragDropEffects.Move 
                 : DragDropEffects.None;
         }
+
+        private void InitialiseColours()
+        {
+            BackColor = GetColor("FormBackColor", Color.FromArgb(255, 0, 0, 0));
+            addButton.BackColor = GetColor("AddButtonBackColor", Color.FromArgb(255, 0, 0, 0));
+            addButton.ForeColor = GetColor("AddButtonForeColor", Color.FromArgb(255, 255, 255, 255));
+            addButton.FlatAppearance.MouseOverBackColor = GetColor("AddButtonHoverColor", Color.FromArgb(255, 60, 60, 60));
+            addButton.FlatAppearance.MouseDownBackColor = GetColor("AddButtonClickColor", Color.FromArgb(255, 80, 80, 80));
+            buttonDelete.BackColor = GetColor("DeleteButtonBackColor", Color.FromArgb(255, 0, 0, 0));
+            buttonDelete.ForeColor = GetColor("DeleteButtonForeColor", Color.FromArgb(255, 255, 255, 255));
+            buttonDelete.FlatAppearance.MouseOverBackColor = GetColor("DeleteButtonHoverColor", Color.FromArgb(255, 0, 0, 0));
+            buttonDelete.FlatAppearance.MouseDownBackColor = GetColor("DeleteButtonClickColor", Color.FromArgb(255, 0, 0, 0));
+            resizeButton.ForeColor = GetColor("ResizerForeColor", Color.FromArgb(255, 255, 255, 255));
+            buttonMinimise.BackColor = GetColor("MinimiseButtonBackColor", Color.FromArgb(255, 0, 0, 0));
+            buttonMinimise.ForeColor = GetColor("MinimiseButtonForeColor", Color.FromArgb(255, 255, 255, 255));
+            buttonMinimise.FlatAppearance.MouseOverBackColor = GetColor("MinimiseButtonHoverColor", Color.FromArgb(255, 60, 60, 60));
+            buttonMinimise.FlatAppearance.MouseDownBackColor = GetColor("MinimiseButtonClickColor", Color.FromArgb(255, 80, 80, 80));
+            closeButton.BackColor = GetColor("CloseButtonBackColor", Color.FromArgb(255, 0, 0, 0));
+            closeButton.ForeColor = GetColor("CloseButtonForeColor", Color.FromArgb(255, 255, 255, 255));
+            closeButton.FlatAppearance.MouseOverBackColor = GetColor("CloseButtonHoverColor", Color.FromArgb(255, 192, 0, 0));
+            closeButton.FlatAppearance.MouseDownBackColor = GetColor("CloseButtonClickColor", Color.FromArgb(255, 255, 0, 0));
+        }
+
+        private Color GetColor(string property, Color defaultValue)
+        {
+            var setting = ConfigurationManager.AppSettings[property];
+
+            if (string.IsNullOrEmpty(setting))
+            {
+                return defaultValue;
+            }
+
+            try
+            {
+                var parts = setting.Split(',');
+
+                var color = Color.FromArgb(
+                    int.Parse(parts[0]),
+                    int.Parse(parts[1]),
+                    int.Parse(parts[2]),
+                    int.Parse(parts[3]));
+
+                return color;
+            }
+            catch
+            {
+                return defaultValue;
+            }
+        }
     }
 }
