@@ -28,6 +28,7 @@ namespace UnicodePad
             this.resizeButton = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonMinimise = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonPanel
@@ -45,14 +46,14 @@ namespace UnicodePad
             this.closeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
             this.closeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.Font = new System.Drawing.Font("Marlett", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.closeButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.White;
             this.closeButton.Location = new System.Drawing.Point(764, 0);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(36, 36);
             this.closeButton.TabIndex = 1;
             this.closeButton.TabStop = false;
-            this.closeButton.Text = "r";
+            this.closeButton.Text = "";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.CloseButtonClick);
             // 
@@ -118,15 +119,32 @@ namespace UnicodePad
             this.buttonMinimise.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.buttonMinimise.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.buttonMinimise.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMinimise.Font = new System.Drawing.Font("Marlett", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.buttonMinimise.Font = new System.Drawing.Font("Marlett", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.buttonMinimise.ForeColor = System.Drawing.Color.White;
             this.buttonMinimise.Location = new System.Drawing.Point(728, 0);
             this.buttonMinimise.Name = "buttonMinimise";
             this.buttonMinimise.Size = new System.Drawing.Size(36, 36);
             this.buttonMinimise.TabIndex = 5;
             this.buttonMinimise.TabStop = false;
-            this.buttonMinimise.Text = "q";
+            this.buttonMinimise.Text = "";
             this.buttonMinimise.UseVisualStyleBackColor = true;
+            // 
+            // buttonSettings
+            // 
+            this.buttonSettings.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonSettings.FlatAppearance.BorderSize = 0;
+            this.buttonSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.buttonSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSettings.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSettings.ForeColor = System.Drawing.Color.White;
+            this.buttonSettings.Location = new System.Drawing.Point(692, 0);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(36, 36);
+            this.buttonSettings.TabIndex = 6;
+            this.buttonSettings.TabStop = false;
+            this.buttonSettings.Text = "";
+            this.buttonSettings.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -135,6 +153,7 @@ namespace UnicodePad
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonMinimise);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.closeButton);
@@ -187,7 +206,22 @@ namespace UnicodePad
 
             buttonMinimise.Click += (sender, args) => { WindowState = FormWindowState.Minimized; };
 
-            TopMost = true;
+            buttonSettings.Click += (sender, args) =>
+            {
+                var settings = new Settings();
+                settings.Owner = this;
+                TopMost = false;
+                var result = settings.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    InitialiseColours();
+                    PopulateButtons();
+                }
+
+                SetTopMost();
+            };
+
+            SetTopMost();
         }
 
         private void PopulateButtons()
@@ -223,6 +257,7 @@ namespace UnicodePad
         private Button resizeButton;
         private Button buttonDelete;
         private Button buttonMinimise;
+        private Button buttonSettings;
     }
 }
 

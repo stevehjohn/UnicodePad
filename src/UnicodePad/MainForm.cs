@@ -106,9 +106,27 @@ namespace UnicodePad
             resizeButton.Visible = true;
         }
 
+        private void SetTopMost()
+        {
+            if (bool.TryParse(ConfigurationManager.AppSettings["AlwaysOnTop"], out var topMost))
+            {
+                TopMost = topMost;
+            }
+            else
+            {
+                TopMost = true;
+                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["AlwaysOnTop"].Value = "true";
+                config.Save();
+                ConfigurationManager.RefreshSection("appSettings");
+            }
+        }
+
         private void addButton_Click(object sender, EventArgs e)
         {
+            TopMost = false;
             var newCharacters = Microsoft.VisualBasic.Interaction.InputBox("Enter character(s) to add").Trim();
+            SetTopMost();
 
             if (string.IsNullOrWhiteSpace(newCharacters))
             {
@@ -165,8 +183,6 @@ namespace UnicodePad
             addButton.FlatAppearance.MouseDownBackColor = GetColor("AddButtonClickColor", Color.FromArgb(255, 80, 80, 80));
             buttonDelete.BackColor = GetColor("DeleteButtonBackColor", Color.FromArgb(255, 0, 0, 0));
             buttonDelete.ForeColor = GetColor("DeleteButtonForeColor", Color.FromArgb(255, 255, 255, 255));
-            buttonDelete.FlatAppearance.MouseOverBackColor = GetColor("DeleteButtonHoverColor", Color.FromArgb(255, 0, 0, 0));
-            buttonDelete.FlatAppearance.MouseDownBackColor = GetColor("DeleteButtonClickColor", Color.FromArgb(255, 0, 0, 0));
             resizeButton.ForeColor = GetColor("ResizerForeColor", Color.FromArgb(255, 255, 255, 255));
             buttonMinimise.BackColor = GetColor("MinimiseButtonBackColor", Color.FromArgb(255, 0, 0, 0));
             buttonMinimise.ForeColor = GetColor("MinimiseButtonForeColor", Color.FromArgb(255, 255, 255, 255));
@@ -176,6 +192,10 @@ namespace UnicodePad
             closeButton.ForeColor = GetColor("CloseButtonForeColor", Color.FromArgb(255, 255, 255, 255));
             closeButton.FlatAppearance.MouseOverBackColor = GetColor("CloseButtonHoverColor", Color.FromArgb(255, 192, 0, 0));
             closeButton.FlatAppearance.MouseDownBackColor = GetColor("CloseButtonClickColor", Color.FromArgb(255, 255, 0, 0));
+            buttonSettings.BackColor = GetColor("SettingsButtonBackColor", Color.FromArgb(255, 0, 0, 0));
+            buttonSettings.ForeColor = GetColor("SettingsButtonForeColor", Color.FromArgb(255, 255, 255, 255));
+            buttonSettings.FlatAppearance.MouseOverBackColor = GetColor("SettingsButtonHoverColor", Color.FromArgb(255, 60, 60, 60));
+            buttonSettings.FlatAppearance.MouseDownBackColor = GetColor("SettingsButtonClickColor", Color.FromArgb(255, 80, 80, 80));
         }
 
         private Color GetColor(string property, Color defaultValue)
