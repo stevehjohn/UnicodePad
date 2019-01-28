@@ -27,15 +27,15 @@ namespace UnicodePad
             this.addButton = new System.Windows.Forms.Button();
             this.resizeButton = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonMinimise = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonPanel
             // 
             this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonPanel.Location = new System.Drawing.Point(0, 55);
-            this.buttonPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonPanel.Location = new System.Drawing.Point(0, 36);
             this.buttonPanel.Name = "buttonPanel";
-            this.buttonPanel.Size = new System.Drawing.Size(1200, 637);
+            this.buttonPanel.Size = new System.Drawing.Size(800, 414);
             this.buttonPanel.TabIndex = 0;
             // 
             // closeButton
@@ -47,10 +47,9 @@ namespace UnicodePad
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Marlett", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.closeButton.ForeColor = System.Drawing.Color.White;
-            this.closeButton.Location = new System.Drawing.Point(1146, 0);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.closeButton.Location = new System.Drawing.Point(764, 0);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(54, 55);
+            this.closeButton.Size = new System.Drawing.Size(36, 36);
             this.closeButton.TabIndex = 1;
             this.closeButton.TabStop = false;
             this.closeButton.Text = "r";
@@ -67,9 +66,8 @@ namespace UnicodePad
             this.addButton.Font = new System.Drawing.Font("Trebuchet MS", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addButton.ForeColor = System.Drawing.Color.White;
             this.addButton.Location = new System.Drawing.Point(0, 0);
-            this.addButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(54, 55);
+            this.addButton.Size = new System.Drawing.Size(36, 36);
             this.addButton.TabIndex = 2;
             this.addButton.TabStop = false;
             this.addButton.Text = "+";
@@ -85,11 +83,10 @@ namespace UnicodePad
             this.resizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.resizeButton.Font = new System.Drawing.Font("Marlett", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.resizeButton.ForeColor = System.Drawing.Color.White;
-            this.resizeButton.Location = new System.Drawing.Point(573, 0);
-            this.resizeButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.resizeButton.Location = new System.Drawing.Point(382, 0);
             this.resizeButton.Name = "resizeButton";
-            this.resizeButton.Padding = new System.Windows.Forms.Padding(15, 15, 0, 0);
-            this.resizeButton.Size = new System.Drawing.Size(54, 55);
+            this.resizeButton.Padding = new System.Windows.Forms.Padding(10, 10, 0, 0);
+            this.resizeButton.Size = new System.Drawing.Size(36, 36);
             this.resizeButton.TabIndex = 3;
             this.resizeButton.TabStop = false;
             this.resizeButton.Text = "o";
@@ -106,29 +103,45 @@ namespace UnicodePad
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelete.Font = new System.Drawing.Font("Trebuchet MS", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDelete.ForeColor = System.Drawing.Color.White;
-            this.buttonDelete.Location = new System.Drawing.Point(54, 0);
-            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonDelete.Location = new System.Drawing.Point(36, 0);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(54, 55);
+            this.buttonDelete.Size = new System.Drawing.Size(36, 36);
             this.buttonDelete.TabIndex = 4;
             this.buttonDelete.TabStop = false;
             this.buttonDelete.Text = "-";
             this.buttonDelete.UseVisualStyleBackColor = true;
             // 
+            // buttonMinimise
+            // 
+            this.buttonMinimise.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonMinimise.FlatAppearance.BorderSize = 0;
+            this.buttonMinimise.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.buttonMinimise.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.buttonMinimise.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMinimise.Font = new System.Drawing.Font("Marlett", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.buttonMinimise.ForeColor = System.Drawing.Color.White;
+            this.buttonMinimise.Location = new System.Drawing.Point(728, 0);
+            this.buttonMinimise.Name = "buttonMinimise";
+            this.buttonMinimise.Size = new System.Drawing.Size(36, 36);
+            this.buttonMinimise.TabIndex = 5;
+            this.buttonMinimise.TabStop = false;
+            this.buttonMinimise.Text = "q";
+            this.buttonMinimise.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonMinimise);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.resizeButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.buttonPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
@@ -145,10 +158,10 @@ namespace UnicodePad
         {
             base.OnLoad(e);
 
-            this.MouseDown += MainFormMouseDown;
-            this.MouseUp += MainFormMouseUp;
-            this.MouseMove += MainFormMouseMove;
-            this.Resize += MainFormResize;
+            MouseDown += MainFormMouseDown;
+            MouseUp += MainFormMouseUp;
+            MouseMove += MainFormMouseMove;
+            Resize += MainFormResize;
 
             resizeButton.MouseDown += ResizeButtonMouseDown;
             resizeButton.MouseUp += ResizeButtonMouseUp;
@@ -169,6 +182,8 @@ namespace UnicodePad
 
             buttonDelete.DragDrop += ButtonDeleteOnDragDrop;
             buttonDelete.DragOver += ButtonDeleteOnDragOver;
+
+            buttonMinimise.Click += (sender, args) => { WindowState = FormWindowState.Minimized; };
 
             TopMost = true;
         }
@@ -205,6 +220,7 @@ namespace UnicodePad
         private Button addButton;
         private Button resizeButton;
         private Button buttonDelete;
+        private Button buttonMinimise;
     }
 }
 

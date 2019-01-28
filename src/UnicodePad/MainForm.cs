@@ -116,7 +116,7 @@ namespace UnicodePad
             }
 
             var characters = ConfigurationManager.AppSettings["characters"];
-
+            
             characters = $"{characters},{newCharacters}";
 
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
