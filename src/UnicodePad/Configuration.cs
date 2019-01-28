@@ -76,15 +76,15 @@ namespace UnicodePad
         public Color ButtonBackColor { get; set; }
 
         [Category("Colours")]
-        [DisplayName("Symbol  button foreground colour")]
+        [DisplayName("Symbol button foreground colour")]
         public Color ButtonForeColor { get; set; }
 
         [Category("Colours")]
-        [DisplayName("Symbol  button background colour when mouse is over it")]
+        [DisplayName("Symbol button background colour when mouse is over it")]
         public Color ButtonHoverColor { get; set; }
 
         [Category("Colours")]
-        [DisplayName("Symbol  button background colour when clicked")]
+        [DisplayName("Symbol button background colour when clicked")]
         public Color ButtonClickColor { get; set; }
 
         [Category("General")]
