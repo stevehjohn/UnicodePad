@@ -204,7 +204,11 @@ namespace UnicodePad
             buttonDelete.DragDrop += ButtonDeleteOnDragDrop;
             buttonDelete.DragOver += ButtonDeleteOnDragOver;
 
-            buttonMinimise.Click += (sender, args) => { WindowState = FormWindowState.Minimized; };
+            buttonMinimise.Click += (sender, args) =>
+            {
+                
+                WindowState = FormWindowState.Minimized;
+            };
 
             buttonSettings.Click += (sender, args) =>
             {
@@ -229,6 +233,7 @@ namespace UnicodePad
             buttonPanel.Controls.Clear();
 
             var symbols = ConfigurationManager.AppSettings["characters"].Split(',');
+            var font = ConfigurationManager.AppSettings["Font"];
 
             foreach (var symbol in symbols)
             {
@@ -246,7 +251,7 @@ namespace UnicodePad
                 button.FlatAppearance.MouseOverBackColor = GetColor("ButtonHoverColor", Color.FromArgb(255, 60, 60, 60));
                 button.FlatAppearance.MouseDownBackColor = GetColor("ButtonClickColor", Color.FromArgb(255, 80, 80, 80));
                 button.MouseDown += ButtonMouseDown;
-                button.Font = new Font("Consolas", 16);
+                button.Font = new Font(font, 16);
                 buttonPanel.Controls.Add(button);
             }
         }
