@@ -131,14 +131,14 @@ namespace UnicodePad
             // 
             // buttonSettings
             // 
-            this.buttonSettings.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonSettings.Dock = System.Windows.Forms.DockStyle.Left;
             this.buttonSettings.FlatAppearance.BorderSize = 0;
             this.buttonSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.buttonSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSettings.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSettings.ForeColor = System.Drawing.Color.White;
-            this.buttonSettings.Location = new System.Drawing.Point(692, 0);
+            this.buttonSettings.Location = new System.Drawing.Point(72, 0);
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.Size = new System.Drawing.Size(36, 36);
             this.buttonSettings.TabIndex = 6;
@@ -204,7 +204,11 @@ namespace UnicodePad
             buttonDelete.DragDrop += ButtonDeleteOnDragDrop;
             buttonDelete.DragOver += ButtonDeleteOnDragOver;
 
-            buttonMinimise.Click += (sender, args) => { WindowState = FormWindowState.Minimized; };
+            buttonMinimise.Click += (sender, args) =>
+            {
+                
+                WindowState = FormWindowState.Minimized;
+            };
 
             buttonSettings.Click += (sender, args) =>
             {
@@ -229,6 +233,7 @@ namespace UnicodePad
             buttonPanel.Controls.Clear();
 
             var symbols = ConfigurationManager.AppSettings["characters"].Split(',');
+            var font = ConfigurationManager.AppSettings["Font"];
 
             foreach (var symbol in symbols)
             {
@@ -246,7 +251,7 @@ namespace UnicodePad
                 button.FlatAppearance.MouseOverBackColor = GetColor("ButtonHoverColor", Color.FromArgb(255, 60, 60, 60));
                 button.FlatAppearance.MouseDownBackColor = GetColor("ButtonClickColor", Color.FromArgb(255, 80, 80, 80));
                 button.MouseDown += ButtonMouseDown;
-                button.Font = new Font("Consolas", 16);
+                button.Font = new Font(font, 16);
                 buttonPanel.Controls.Add(button);
             }
         }

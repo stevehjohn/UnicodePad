@@ -91,6 +91,10 @@ namespace UnicodePad
         [DisplayName("Keep Unicode Pad window on top of others")]
         public bool AlwaysOnTop { get; set; }
 
+        [Category("General")]
+        [DisplayName("Font to show characters in")]
+        public Font Font { get; set; }
+
         public void LoadSettings()
         {
             var properties = GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
@@ -128,7 +132,9 @@ namespace UnicodePad
                         {
                             //
                         }
-
+                        break;
+                    case "Font":
+                        property.SetValue(this, new Font(setting, 16));
                         break;
                     default:
                         property.SetValue(this, setting);
@@ -153,6 +159,9 @@ namespace UnicodePad
                         break;
                     case "Boolean":
                         config.AppSettings.Settings[property.Name].Value = ((bool) property.GetValue(this)).ToString();
+                        break;
+                    case "Font":
+                        config.AppSettings.Settings[property.Name].Value = ((Font) property.GetValue(this)).Name;
                         break;
                     default:
                         config.AppSettings.Settings[property.Name].Value = (string) property.GetValue(this);
