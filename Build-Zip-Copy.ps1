@@ -11,5 +11,5 @@ Add-Type -A System.IO.Compression.FileSystem
 [IO.Compression.ZipFile]::CreateFromDirectory($src, $dst)
 
 # Copy to where I have it installed.
-Copy-Item .\src\UnicodePad\bin\Release\UnicodePad.exe -Destination 'C:\Program Files\Unicode Pad\'
-Copy-Item .\src\UnicodePad\bin\Release\UnicodePad.exe.config -Destination 'C:\Program Files\Unicode Pad\'
+Copy-Item .\src\UnicodePad\bin\Release\UnicodePad.exe -Destination 'C:\Utilities\UnicodePad\'
+Copy-Item .\src\UnicodePad\bin\Release\UnicodePad.exe.config -Destination 'C:\Utilities\UnicodePad\'
